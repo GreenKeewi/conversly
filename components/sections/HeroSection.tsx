@@ -39,19 +39,11 @@ export default function HeroSection() {
           
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.8 }}
           >
-            <button
-              onClick={() => window.open('https://cal.com/kiwi-mars-acgcuv', '_blank')}
-              className="group relative px-8 py-4 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] rounded-full text-[var(--color-bg)] font-semibold text-lg hover:shadow-xl hover:shadow-[var(--accent-1)]/50 transition-all duration-300 hover:scale-105"
-            >
-              Try a Live Agent
-              <span className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
-            </button>
-            
             <button
               onClick={() => window.open('https://cal.com/kiwi-mars-acgcuv', '_blank')}
               className="px-8 py-4 border-2 rounded-full text-[var(--color-silver)] font-semibold text-lg transition-all duration-300 hover:scale-105"

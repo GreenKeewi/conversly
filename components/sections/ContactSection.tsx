@@ -2,35 +2,46 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 export default function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-  const [submitted, setSubmitted] = useState(false);
+  
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  useEffect(() => {
+    // Insert Cal.com inline embed script on client
+    if (typeof window === 'undefined') return;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Placeholder for form submission
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 3000);
-  };
+    const inlineScript = `
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+
+      Cal("init", "15min", {origin:"https://app.cal.com"});
+
+      Cal.ns["15min"]("inline", {
+        elementOrSelector:"#my-cal-inline-15min",
+        config: {"layout":"month_view"},
+        calLink: "kiwi-mars-acgcuv",
+      });
+
+      Cal.ns["15min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    `;
+
+    const s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.text = inlineScript;
+    document.body.appendChild(s);
+
+    return () => {
+      try {
+        document.body.removeChild(s);
+      } catch {
+        // ignore
+      }
+    };
+  }, []);
+
+  
 
   return (
     <section id="contact" ref={ref} className="relative py-32 px-4">
@@ -41,112 +52,11 @@ export default function ContactSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] bg-clip-text text-transparent">
-            Let&apos;s Build Your Voice Agent
-          </h2>
-          <p className="text-xl text-[var(--color-silver)]/80">
-            Partner with Conversly and give your business the voice of the future.
-          </p>
+          {/* Inline Cal.com embed container */}
+          <div id="my-cal-inline-15min" style={{ width: '100%', height: '700px', overflow: 'auto' }} />
         </motion.div>
 
-        <motion.div
-          className="glass rounded-3xl p-8 md:p-12 relative overflow-hidden"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          {submitted ? (
-            <motion.div
-              className="text-center py-12"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="text-6xl mb-4">✨</div>
-              <h3 className="text-3xl font-bold text-[var(--accent-1)] mb-2">Thank you!</h3>
-              <p className="text-[var(--color-silver)]/80">We&apos;ll be in touch soon.</p>
-            </motion.div>
-          ) : (
-            <form suppressHydrationWarning onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-[var(--color-silver)] mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  suppressHydrationWarning
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-[var(--color-silver)] placeholder:text-[var(--color-silver)]/40 focus:outline-none focus:border-[var(--accent-1)] transition-colors duration-300"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-[var(--color-silver)] mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  suppressHydrationWarning
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-[var(--color-silver)] placeholder:text-[var(--color-silver)]/40 focus:outline-none focus:border-[var(--accent-1)] transition-colors duration-300"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-[var(--color-silver)] mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  suppressHydrationWarning
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-[var(--color-silver)] placeholder:text-[var(--color-silver)]/40 focus:outline-none focus:border-[var(--accent-1)] transition-colors duration-300 resize-none"
-                  placeholder="Tell us about your project..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] rounded-full px-8 py-4 text-[var(--color-bg)] font-semibold text-lg hover:shadow-xl hover:shadow-[var(--accent-1)]/50 transition-all duration-300 hover:scale-105"
-              >
-                Send Message
-              </button>
-            </form>
-          )}
-
-          {/* Background gradient glow */}
-          <motion.div
-            className="absolute inset-0 rounded-3xl pointer-events-none"
-            style={{
-              background: `linear-gradient(135deg, rgba(125,211,252,0.03) 0%, rgba(139,92,246,0.03) 100%)`,
-            }}
-            animate={{
-              background: [
-                'linear-gradient(135deg, rgba(125,211,252,0.03) 0%, rgba(139,92,246,0.03) 100%)',
-                'linear-gradient(135deg, rgba(139,92,246,0.03) 0%, rgba(125,211,252,0.03) 100%)',
-              ],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-        </motion.div>
+        {/* Removed the original contact form; only Cal.com embed remains */}
       </div>
     </section>
   );
