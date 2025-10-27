@@ -4,11 +4,9 @@ import BeamsBackground from '@/components/background/BeamsBackground';
 import CursorGlow from '@/components/background/CursorGlow';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { heroWaveformBars } from '@/lib/waveform';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { demoWaveformBars } from '@/lib/waveform';
+import { heroWaveformBars, demoWaveformBars } from '@/lib/waveform';
 
 const features = [
   {
@@ -235,7 +233,7 @@ function DemoSection() {
               {isPlaying ? (
                 <div className="w-4 h-4 bg-[var(--color-bg)] rounded-sm"></div>
               ) : (
-                <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-[var(--color-bg)] border-b-8 border-b-transparent ml-1"></div>
+                <div className="w-0 h-0 border-t-8 border-t-transparent border-l-[12px] border-l-[var(--color-bg)] border-b-8 border-b-transparent ml-1"></div>
               )}
               
               {isPlaying && (
