@@ -33,7 +33,7 @@ A stunning, futuristic one-page landing site for Conversly, showcasing next-gene
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 20+ 
+- Node.js 20+
 - npm or yarn
 
 ### Installation
