@@ -32,7 +32,7 @@ export default function UseCasesSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="relative py-32 px-4">
+    <section id="usecases" ref={ref} className="relative py-32 px-4">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -40,10 +40,10 @@ export default function UseCasesSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#00C6FF] to-[#2DFFF6] bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] bg-clip-text text-transparent">
             Built for Every Industry
           </h2>
-          <p className="text-xl text-[#E0E0E0]/80 max-w-3xl mx-auto">
+          <p className="text-xl text-[var(--color-silver)]/80 max-w-3xl mx-auto">
             From healthcare to retail, our voice agents adapt to your unique business needs.
           </p>
         </motion.div>
@@ -61,10 +61,10 @@ export default function UseCasesSection() {
                 <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                   {useCase.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-[#E0E0E0] group-hover:text-[#00C6FF] transition-colors duration-300">
+                <h3 className="text-xl font-semibold mb-3 text-[var(--color-silver)] group-hover:text-[var(--accent-1)] transition-colors duration-300">
                   {useCase.title}
                 </h3>
-                <p className="text-[#E0E0E0]/70 text-sm leading-relaxed">
+                <p className="text-[var(--color-silver)]/70 text-sm leading-relaxed">
                   {useCase.description}
                 </p>
               </div>

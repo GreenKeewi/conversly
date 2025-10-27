@@ -27,7 +27,7 @@ export default function AboutSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="relative py-32 px-4">
+    <section id="about" ref={ref} className="relative py-32 px-4">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -35,10 +35,10 @@ export default function AboutSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#00C6FF] to-[#2DFFF6] bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] bg-clip-text text-transparent">
             Your Brand, Given a Voice.
           </h2>
-          <p className="text-xl text-[#E0E0E0]/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-[var(--color-silver)]/80 max-w-3xl mx-auto leading-relaxed">
             Conversly builds intelligent voice agents for customer support, scheduling, 
             and lead conversion. Our agents talk, understand, and act like humans — 
             available 24/7 for your business.
@@ -57,10 +57,10 @@ export default function AboutSection() {
               <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                 {feature.icon}
               </div>
-              <h3 className="text-2xl font-semibold mb-4 text-[#E0E0E0] group-hover:text-[#00C6FF] transition-colors duration-300">
+              <h3 className="text-2xl font-semibold mb-4 text-[var(--color-silver)] group-hover:text-[var(--accent-1)] transition-colors duration-300">
                 {feature.title}
               </h3>
-              <p className="text-[#E0E0E0]/70 leading-relaxed">
+              <p className="text-[var(--color-silver)]/70 leading-relaxed">
                 {feature.description}
               </p>
               

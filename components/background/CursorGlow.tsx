@@ -20,7 +20,7 @@ export default function CursorGlow() {
       style={{
         left: position.x - 192,
         top: position.y - 192,
-        background: 'radial-gradient(circle, rgba(0, 198, 255, 0.15) 0%, transparent 60%)',
+        background: 'radial-gradient(circle, rgba(125, 211, 252, 0.12) 0%, rgba(139,92,246,0.06) 40%, transparent 60%)',
         filter: 'blur(40px)',
       }}
     />
