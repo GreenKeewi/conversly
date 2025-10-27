@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  
+  /* Conversly Brand Colors */
+  --color-charcoal: #0b0b0f;
+  --color-electric-blue: #00C6FF;
+  --color-neon-cyan: #2DFFF6;
+  --color-silver: #E0E0E0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0b0b0f;
+  color: #E0E0E0;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Glassmorphic effect utility */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glow effects */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(0, 198, 255, 0.3),
+              0 0 40px rgba(0, 198, 255, 0.2);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(45, 255, 246, 0.3),
+              0 0 40px rgba(45, 255, 246, 0.2);
+}
