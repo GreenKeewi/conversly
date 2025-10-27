@@ -3,11 +3,11 @@
 @theme inline {
   --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   
-  /* Conversly Brand Colors (updated for beams theme) */
-  --color-bg: #070712;
-  --accent-1: #7dd3fc; /* cyan-ish */
-  --accent-2: #8b5cf6; /* purple-ish */
-  --color-silver: #E6EEF8;
+  /* Conversly Brand Colors - Futuristic Theme */
+  --color-bg: #0b0b0f; /* deep matte charcoal */
+  --accent-1: #00C6FF; /* cyan */
+  --accent-2: #2DFFF6; /* turquoise */
+  --color-silver: #E0E0E0;
 }
 
 * {
